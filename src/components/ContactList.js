@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, FlatList, Text } from 'react-native';
 import ContactDetail from './ContactDetail';
 
 class ContactList extends Component {
@@ -1859,9 +1859,19 @@ class ContactList extends Component {
   });
 
   renderCells() {
-    return this.state.contacts.map(contact => (
-      <ContactDetail key={contact.registered} detail={contact} />
-    ));
+     // CORRECT FORM
+      return (
+         <FlatList
+            data={this.state.contacts}
+            renderItem={({ contact }) => <Text>{ contact.name.first }</Text>}
+            keyExtractor={(item, index) => index}
+         />
+      );
+
+     // WRONG MANNER
+    // return this.state.contacts.map(contact => (
+    //   <ContactDetail key={contact.registered} detail={contact} />
+    // ));
   }
 
   render() {
