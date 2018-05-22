@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, FlatList, Text } from 'react-native';
+import { ScrollView, FlatList, Text, View } from 'react-native';
 import ContactDetail from './ContactDetail';
 
 class ContactList extends Component {
@@ -1862,10 +1862,9 @@ class ContactList extends Component {
      // CORRECT FORM
       return (
          <FlatList
-            data={this.state.contacts}
-            renderItem={({ contact }) => <Text>{ contact.name.first }</Text>}
-            keyExtractor={(item, index) => index}
-         />
+          data={this.state.contacts}
+          renderItem={({item}) => <ContactDetail key={item.registered} detail={item} />}
+        />
       );
 
      // WRONG MANNER
