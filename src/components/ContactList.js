@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { ScrollView, FlatList, Text, View } from 'react-native';
+import { ScrollView, FlatList } from 'react-native';
 import ContactDetail from './ContactDetail';
 
 class ContactList extends Component {
-  state = ({
+   state = ({
+      totalReloads: 100,
+      currentReload: 0,
+      startDate: null,
     contacts:
     [{
         gender: 'male',
@@ -1856,30 +1859,56 @@ class ContactList extends Component {
         nat: 'TR'
       }
     ]
-  });
+   });
 
-  renderCells() {
+   componentDidMount() {
+      console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
+      // console.log(`${this.state.currentReload} ${Date.now() - this.state.startDate}`);    //GET DURATION MODE 2
+      this.setState({ currentReload: this.state.currentReload + 1 });
+   }
+
+   shouldComponentUpdate(nextProps, nextState) {
+      if (nextState.currentReload !== this.state.currentReload) {
+         return true;
+      }
+
+      return false;
+   }
+
+   componentDidUpdate() {
+      console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
+      // console.log(`${this.state.currentReload} ${Date.now() - this.state.startDate}`);    //GET DURATION MODE 2
+      if (this.state.currentReload < this.state.totalReloads) {
+            this.setState({ currentReload: this.state.currentReload + 1 });
+      }
+   }
+
+   renderCells() {
      // CORRECT FORM
       return (
          <FlatList
           data={this.state.contacts}
-          renderItem={({item}) => <ContactDetail key={item.registered} detail={item} />}
-        />
+          renderItem={({ item }) => <ContactDetail key={item.registered} detail={item} />}
+          extraData={this.state.currentReload}
+         />
       );
 
      // WRONG MANNER
     // return this.state.contacts.map(contact => (
     //   <ContactDetail key={contact.registered} detail={contact} />
     // ));
-  }
+   }
 
-  render() {
-    return (
-      <ScrollView>
-        { this.renderCells() }
-      </ScrollView>
-    );
-  }
+   render() {
+      console.log(`${this.state.currentReload} start: ${new Date().getMilliseconds()}`);     //GET DURATION MODE 1
+      // this.setState({ startDate: Date.now() });                                           //GET DURATION MODE 2
+
+      return (
+         <ScrollView>
+            { this.renderCells() }
+         </ScrollView>
+      );
+   }
 }
 
 export default ContactList;
