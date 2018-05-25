@@ -4,7 +4,7 @@ import ContactDetail from './ContactDetail';
 
 class ContactList extends Component {
    state = ({
-      totalReloads: 100,
+      totalReloads: 30,
       currentReload: 0,
       startDate: null,
     contacts:
@@ -1862,8 +1862,8 @@ class ContactList extends Component {
    });
 
    componentDidMount() {
-      console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
-      // console.log(`${this.state.currentReload} ${Date.now() - this.state.startDate}`);    //GET DURATION MODE 2
+      // console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
+      console.log(`${Date.now() - this.state.startDate}`);    //GET DURATION MODE 2
       this.setState({ currentReload: this.state.currentReload + 1 });
    }
 
@@ -1876,8 +1876,8 @@ class ContactList extends Component {
    }
 
    componentDidUpdate() {
-      console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
-      // console.log(`${this.state.currentReload} ${Date.now() - this.state.startDate}`);    //GET DURATION MODE 2
+      // console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
+      console.log(`${Date.now() - this.state.startDate}`);    //GET DURATION MODE 2
       if (this.state.currentReload < this.state.totalReloads) {
             this.setState({ currentReload: this.state.currentReload + 1 });
       }
@@ -1900,8 +1900,8 @@ class ContactList extends Component {
    }
 
    render() {
-      console.log(`${this.state.currentReload} start: ${new Date().getMilliseconds()}`);     //GET DURATION MODE 1
-      // this.setState({ startDate: Date.now() });                                           //GET DURATION MODE 2
+      // console.log(`${this.state.currentReload} start: ${new Date().getMilliseconds()}`);     //GET DURATION MODE 1
+      this.setState({ startDate: Date.now() });                                           //GET DURATION MODE 2
 
       return (
          <ScrollView>
