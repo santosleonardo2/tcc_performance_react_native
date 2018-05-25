@@ -12,7 +12,6 @@ const ContactDetail = (props) => {
             <Text style={styles.nameStyle}>
                { name.title + ' ' + name.first + ' ' + name.last }
             </Text>
-            <Text>{ location.street }</Text>
             <Text>{ phone }</Text>
          </View>
       </CardSession>
