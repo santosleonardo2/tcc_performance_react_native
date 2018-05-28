@@ -4,9 +4,10 @@ import ContactDetail from './ContactDetail';
 
 class ContactList extends Component {
    state = ({
-      totalReloads: 30,
+      totalReloads: 50,
       currentReload: 0,
       startDate: null,
+      mainContacts: [],
     contacts:
     [{
         gender: 'male',
@@ -1864,7 +1865,9 @@ class ContactList extends Component {
    componentDidMount() {
       // console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
       console.log(`${performance.now() - this.state.startDate}`);    //GET DURATION MODE 2
-      this.setState({ currentReload: this.state.currentReload + 1 });
+      let newMainContacts = this.state.mainContacts;
+      newMainContacts.push(this.state.contacts[this.state.currentReload]);
+      this.setState({ currentReload: this.state.currentReload + 1, mainContacts: newMainContacts });
    }
 
    shouldComponentUpdate(nextProps, nextState) {
@@ -1879,7 +1882,9 @@ class ContactList extends Component {
       // console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
       console.log(`${performance.now() - this.state.startDate}`);    //GET DURATION MODE 2
       if (this.state.currentReload < this.state.totalReloads) {
-            this.setState({ currentReload: this.state.currentReload + 1 });
+         let newMainContacts = this.state.mainContacts;
+         newMainContacts.push(this.state.contacts[this.state.currentReload]);
+         this.setState({ currentReload: this.state.currentReload + 1, mainContacts: newMainContacts });
       }
    }
 
@@ -1887,7 +1892,7 @@ class ContactList extends Component {
      // CORRECT FORM
       return (
          <FlatList
-          data={this.state.contacts}
+          data={this.state.mainContacts}
           renderItem={({ item }) => <ContactDetail key={item.registered} detail={item} />}
           extraData={this.state.currentReload}
          />
