@@ -4,7 +4,7 @@ import ContactDetail from './ContactDetail';
 
 class ContactList extends Component {
    state = ({
-      totalReloads: 50,
+      totalReloads: 1,
       currentReload: 0,
       startDate: null,
       mainContacts: [],
