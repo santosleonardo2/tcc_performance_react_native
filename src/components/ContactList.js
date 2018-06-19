@@ -1864,7 +1864,8 @@ class ContactList extends Component {
 
    componentDidMount() {
       // console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
-      console.log(`${performance.now() - this.state.startDate}`);    //GET DURATION MODE 2
+      const endDate = Date.now();
+      console.log(`${endDate - this.state.startDate}`);    //GET DURATION MODE 2
       let newMainContacts = this.state.mainContacts;
       newMainContacts.push(this.state.contacts[this.state.currentReload]);
       this.setState({ currentReload: this.state.currentReload + 1, mainContacts: newMainContacts });
@@ -1880,7 +1881,8 @@ class ContactList extends Component {
 
    componentDidUpdate() {
       // console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
-      console.log(`${performance.now() - this.state.startDate}`);    //GET DURATION MODE 2
+      const endDate = Date.now();
+      console.log(`${endDate - this.state.startDate}`);    //GET DURATION MODE 2
       if (this.state.currentReload < this.state.totalReloads) {
          let newMainContacts = this.state.mainContacts;
          newMainContacts.push(this.state.contacts[this.state.currentReload]);
@@ -1905,8 +1907,9 @@ class ContactList extends Component {
    }
 
    render() {
+     const start = Date.now();
       // console.log(`${this.state.currentReload} start: ${new Date().getMilliseconds()}`);     //GET DURATION MODE 1
-      this.setState({ startDate: performance.now() });                                           //GET DURATION MODE 2
+      this.setState({ startDate: start });                                           //GET DURATION MODE 2
 
       return (
          <ScrollView>
