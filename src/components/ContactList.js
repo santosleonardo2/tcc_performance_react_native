@@ -1866,9 +1866,9 @@ class ContactList extends Component {
       // console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
       const endDate = Date.now();
       console.log(`${endDate - this.state.startDate}`);    //GET DURATION MODE 2
-      let newMainContacts = this.state.mainContacts;
-      newMainContacts.push(this.state.contacts[this.state.currentReload]);
-      this.setState({ currentReload: this.state.currentReload + 1, mainContacts: newMainContacts });
+      // let newMainContacts = this.state.mainContacts;
+      // newMainContacts.push(this.state.contacts[this.state.currentReload]);
+      // this.setState({ currentReload: this.state.currentReload + 1, mainContacts: newMainContacts });
    }
 
    shouldComponentUpdate(nextProps, nextState) {
@@ -1883,20 +1883,20 @@ class ContactList extends Component {
       // console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
       const endDate = Date.now();
       console.log(`${endDate - this.state.startDate}`);    //GET DURATION MODE 2
-      if (this.state.currentReload < this.state.totalReloads) {
-         let newMainContacts = this.state.mainContacts;
-         newMainContacts.push(this.state.contacts[this.state.currentReload]);
-         this.setState({ currentReload: this.state.currentReload + 1, mainContacts: newMainContacts });
-      }
+      // if (this.state.currentReload < this.state.totalReloads) {
+      //    let newMainContacts = this.state.mainContacts;
+      //    newMainContacts.push(this.state.contacts[this.state.currentReload]);
+      //    this.setState({ currentReload: this.state.currentReload + 1, mainContacts: newMainContacts });
+      // }
    }
 
    renderCells() {
      // CORRECT FORM
       return (
          <FlatList
-          data={this.state.mainContacts}
+          data={this.state.contacts}
           renderItem={({ item }) => <ContactDetail key={item.registered} detail={item} />}
-          extraData={this.state.currentReload}
+          // extraData={this.state.currentReload}
          />
       );
 
