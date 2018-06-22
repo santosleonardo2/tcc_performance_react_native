@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { ScrollView, FlatList} from 'react-native';
+import { ScrollView, FlatList, Alert } from 'react-native';
 import ContactDetail from './ContactDetail';
 
 class ContactList extends Component {
    state = ({
       totalReloads: 1,
       currentReload: 0,
-      startDate: 0,
+      startDate: Date.now(),
       mainContacts: [],
     contacts:
     [{
@@ -1863,62 +1863,38 @@ class ContactList extends Component {
    });
 
    componentDidMount() {
-      // console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
       const endDate = Date.now();
       const duration = endDate - this.state.startDate;
       console.log('COMPONENT DID MOUNT');
       console.log(`Start Date: ${this.state.startDate}`);
-      console.log(`End Date: ${this.endDate}`);
-      console.log(`Duration (ms): ${duration}`);    //GET DURATION MODE 2
-      // let newMainContacts = this.state.mainContacts;
-      // newMainContacts.push(this.state.contacts[this.state.currentReload]);
-      // this.setState({ currentReload: this.state.currentReload + 1, mainContacts: newMainContacts });
+      console.log(`End Date: ${endDate}`);
+      console.log(`Duration (ms): ${duration}`);
+
+      Alert.alert(
+        'ComponentDidMount',
+        `Duration (ms): ${duration}`,
+      );
    }
 
-   // shouldComponentUpdate(nextProps, nextState) {
-   //    if (nextState.currentReload !== this.state.currentReload) {
-   //       return true;
-   //    }
-   //
-   //    return false;
-   // }
-
    componentDidUpdate() {
-      // console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
       const endDate = Date.now();
       const duration = endDate - this.state.startDate;
       console.log('COMPONENT DID UPDATE');
       console.log(`Start Date: ${this.state.startDate}`);
-      console.log(`End Date: ${this.endDate}`);
-      console.log(`Duration (ms): ${duration}`);    //GET DURATION MODE 2
-      // if (this.state.currentReload < this.state.totalReloads) {
-      //    let newMainContacts = this.state.mainContacts;
-      //    newMainContacts.push(this.state.contacts[this.state.currentReload]);
-      //    this.setState({ currentReload: this.state.currentReload + 1, mainContacts: newMainContacts });
-      // }
+      console.log(`End Date: ${endDate}`);
+      console.log(`Duration (ms): ${duration}`);
    }
 
    renderCells() {
-     // CORRECT FORM
       return (
          <FlatList
           data={this.state.contacts}
           renderItem={({ item }) => <ContactDetail key={item.registered} detail={item} />}
-          // extraData={this.state.currentReload}
          />
       );
-
-     // WRONG MANNER
-    // return this.state.contacts.map(contact => (
-    //   <ContactDetail key={contact.registered} detail={contact} />
-    // ));
    }
 
    render() {
-     const start = Date.now();
-      // console.log(`${this.state.currentReload} start: ${new Date().getMilliseconds()}`);     //GET DURATION MODE 1
-      this.setState({ startDate: start });                                           //GET DURATION MODE 2
-
       return (
          <ScrollView>
             { this.renderCells() }
