@@ -1865,7 +1865,12 @@ class ContactList extends Component {
    componentDidMount() {
       // console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
       const endDate = Date.now();
-      console.log(`${endDate - this.state.startDate}`);    //GET DURATION MODE 2
+      const duration = endDate - this.state.startDate;
+      console.log(`Duration (ms): ${duration}`);    //GET DURATION MODE 2
+      // Alert.alert(
+      //   'Duration',
+      //    `Time spent was (ms): ${duration}`
+      // );
       // let newMainContacts = this.state.mainContacts;
       // newMainContacts.push(this.state.contacts[this.state.currentReload]);
       // this.setState({ currentReload: this.state.currentReload + 1, mainContacts: newMainContacts });
@@ -1882,7 +1887,8 @@ class ContactList extends Component {
    componentDidUpdate() {
       // console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
       const endDate = Date.now();
-      console.log(`${endDate - this.state.startDate}`);    //GET DURATION MODE 2
+      const duration = endDate - this.state.startDate;
+      console.log(`Duration (ms): ${duration}`);    //GET DURATION MODE 2
       // if (this.state.currentReload < this.state.totalReloads) {
       //    let newMainContacts = this.state.mainContacts;
       //    newMainContacts.push(this.state.contacts[this.state.currentReload]);
