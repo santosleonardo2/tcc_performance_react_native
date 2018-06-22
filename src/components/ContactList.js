@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { ScrollView, FlatList } from 'react-native';
+import { ScrollView, FlatList} from 'react-native';
 import ContactDetail from './ContactDetail';
 
 class ContactList extends Component {
    state = ({
       totalReloads: 1,
       currentReload: 0,
-      startDate: null,
+      startDate: 0,
       mainContacts: [],
     contacts:
     [{
@@ -1866,28 +1866,30 @@ class ContactList extends Component {
       // console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
       const endDate = Date.now();
       const duration = endDate - this.state.startDate;
+      console.log('COMPONENT DID MOUNT');
+      console.log(`Start Date: ${this.state.startDate}`);
+      console.log(`End Date: ${this.endDate}`);
       console.log(`Duration (ms): ${duration}`);    //GET DURATION MODE 2
-      // Alert.alert(
-      //   'Duration',
-      //    `Time spent was (ms): ${duration}`
-      // );
       // let newMainContacts = this.state.mainContacts;
       // newMainContacts.push(this.state.contacts[this.state.currentReload]);
       // this.setState({ currentReload: this.state.currentReload + 1, mainContacts: newMainContacts });
    }
 
-   shouldComponentUpdate(nextProps, nextState) {
-      if (nextState.currentReload !== this.state.currentReload) {
-         return true;
-      }
-
-      return false;
-   }
+   // shouldComponentUpdate(nextProps, nextState) {
+   //    if (nextState.currentReload !== this.state.currentReload) {
+   //       return true;
+   //    }
+   //
+   //    return false;
+   // }
 
    componentDidUpdate() {
       // console.log(`${this.state.currentReload} end: ${new Date().getMilliseconds()}`);       //GET DURATION MODE 1
       const endDate = Date.now();
       const duration = endDate - this.state.startDate;
+      console.log('COMPONENT DID UPDATE');
+      console.log(`Start Date: ${this.state.startDate}`);
+      console.log(`End Date: ${this.endDate}`);
       console.log(`Duration (ms): ${duration}`);    //GET DURATION MODE 2
       // if (this.state.currentReload < this.state.totalReloads) {
       //    let newMainContacts = this.state.mainContacts;
